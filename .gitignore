@@ -1,0 +1,11 @@
+/node_modules
+.DS_Store
+.env.development
+.env.production
+.env.test
+/config/config.json
+/logs/*
+.idea/
+/public
+.vscode
+.idea

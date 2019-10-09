@@ -1,0 +1,71 @@
+{
+  "name": "rt-back",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development nodemon ./bin/www",
+    "prod": "pm2 start ecosystem.config.js --env production",
+    "test": "pm2 start ecosystem.config.js --env test",
+    "lint": "./node_modules/.bin/eslint ./ --fix",
+    "migrate": "dotenv -e .env.development ./node_modules/.bin/sequelize db:migrate",
+    "seed": "dotenv -e .env.development ./node_modules/.bin/sequelize db:seed:all",
+    "refresh:seed": "npm run drop:seed && npm run seed",
+    "drop:seed": "dotenv -e .env.development ./node_modules/.bin/sequelize db:seed:undo:all",
+    "drop:migrate": "dotenv -e .env.development ./node_modules/.bin/sequelize db:migrate:undo:all",
+    "refresh:db": "npm run drop:migrate && npm run migrate && npm run seed",
+    "migrate:prod": "dotenv -e .env.production ./node_modules/.bin/sequelize db:migrate",
+    "seed:prod": "dotenv -e .env.production ./node_modules/.bin/sequelize db:seed:all",
+    "refresh:seed:prod": "npm run drop:seed:prod && npm run seed:prod",
+    "drop:seed:prod": "dotenv -e .env.production ./node_modules/.bin/sequelize db:seed:undo:all",
+    "drop:migrate:prod": "dotenv -e .env.production ./node_modules/.bin/sequelize db:migrate:undo:all",
+    "refresh:db:prod": "npm run drop:migrate:prod && npm run migrate:prod && npm run seed:prod"
+  },
+  "dependencies": {
+    "@ljharb/eslint-config": "^13.1.1",
+    "@sendgrid/mail": "^6.3.1",
+    "aws-sdk": "^2.437.0",
+    "babel-eslint": "^10.0.1",
+    "bcrypt": "^3.0.4",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^7.0.0",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "forest-express-sequelize": "^2.17.2",
+    "gif-frames": "^1.0.1",
+    "gifify": "^2.4.3",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemailer": "^6.0.0",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-facebook-token": "^3.3.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter-token": "^1.3.0",
+    "password-validator": "^4.1.1",
+    "pg": "^7.8.2",
+    "request": "^2.88.0",
+    "sequelize": "^4.43.0",
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^2.0.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "husky": "^1.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
