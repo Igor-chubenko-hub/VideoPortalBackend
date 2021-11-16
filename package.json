@@ -23,7 +23,7 @@
   "dependencies": {
     "@ljharb/eslint-config": "^13.1.1",
     "@sendgrid/mail": "^6.3.1",
-    "aws-sdk": "^2.437.0",
+    "aws-sdk": "^2.814.0",
     "babel-eslint": "^10.0.1",
     "bcrypt": "^3.0.4",
     "cookie-parser": "~1.4.3",
